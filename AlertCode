@@ -1,0 +1,22 @@
+'use strict';
+
+const AWS = require('aws-sdk');
+
+const SNS = new AWS.SNS({ apiVersion: '2010-03-31' });
+const NUMBERS = ['15555555555','10000000000','15555555555']; // Replace with your number
+
+ exports.handler = (event, context, callback) => {
+       console.log('Received event:', event);
+    
+    for (var i = 0; i < NUMBERS.length; i++)
+    {
+        
+    const params = {
+        PhoneNumber: NUMBERS[i],
+        Message: "Need help, call/come to the house",
+    };
+    SNS.publish(params, callback);
+  }
+
+
+};
